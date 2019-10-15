@@ -12,43 +12,9 @@
  *
  *= require_tree .
  *= require_self
+
  */
  @import "bootstrap-sprockets";
 
  @import "bootstrap";
 
-body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #333333;
-    background-color: #fff;
-    margin: 0;
-}
-
-header {
-	color: white;
-}
-
-.navbar {
-	min-height: 50px;
-	margin-bottom: 20px;
-}
-
-.navbar-inverse {
-	background-color: #222;
-	border-color: #090909;
-}
-
-.container{
-	width: 750px;
-	margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-header .navbar-left span {
-	font-size: 20px;
-	padding-top: 10px;
-}
