@@ -5,10 +5,10 @@
     </nav>
     <nav>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Users</a></li>
-      <li><a href="#">Books</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><%= link_to "Home", user_path(current_user) %></li>
+      <li><%= link_to "User", users_path %></li>
+      <li><%= link_to "Books", books_path %></li>
+      <li><%= link_to "Logout", root_path %></li>
     </ul>
     </nav>
   </div>
@@ -54,6 +54,7 @@
         <td><%= @book.title %></td>
         <td><%= @book.body %></td>
         <td><%= link_to "Edit", edit_book_path(@book) %></td>
+        <td><%= link_to "destroy", book_path(@book), method: :delete %></td>
        </tr>
      </tbody>
    </table>
