@@ -5,10 +5,10 @@
     </nav>
     <nav>
     <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to "Home", user_path(current_user) %></li>
-      <li><%= link_to "User", users_path %></li>
-      <li><%= link_to "Books", books_path%></li>
-      <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+      <li><%= link_to(" Home", user_path(current_user), {class: "glyphicon glyphicon-home"}) %></li>
+      <li><%= link_to(" User", users_path, {class: "glyphicon glyphicon-user"}) %></li>
+      <li><%= link_to(" Books", books_path, {class: "glyphicon glyphicon-book"}) %></li>
+      <li><%= link_to(" Logout", destroy_user_session_path, { method: :delete, class: "glyphicon glyphicon-log-out"}) %></li>
     </ul>
     </nav>
   </div>
@@ -16,6 +16,17 @@
 
 <div class="container">
 <h1>User info</h1>
+<% if @user.errors.any? %>
+ <div id="error_explanation">
+      <h2><%= @user.errors.count %>errors prohibited this obj from being saved:</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+ <% end %>
+
  <%= form_for(@user) do |f| %>
   <div class="field">
   <label for="name">Name</label>

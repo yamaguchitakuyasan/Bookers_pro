@@ -15,6 +15,13 @@
 </header>
 
 <div class="container">
+  <br>
+  <% if flash[:notice] %>
+  <p id='notice'><%= flash[:notice] %></p>
+  <% end %>
+  <% if flash[:update] %>
+  <p id='notice'><%= flash[:update] %></p>
+  <% end %>
   <div class="row">
   <div class="col-xs-3">
    <h1>User info</h1>
@@ -68,7 +75,7 @@
     </thead>
      <tbody>
        <tr>
-        <td><%= attachment_image_tag @books.user, :profile_image, :fill, 50, 50, format: 'jpeg',  fallback: "no_image.jpg" %></td>
+        <td><%= attachment_image_tag @books.user, :profile_image, :fill, 50, 50, format: 'jpeg',  fallback: "no_image.jpg", size:"50x50" %><br><%= @books.user.name %></td>
         <td><%= link_to @books.title, book_path(@books.id) %></td>
         <td><%= @books.body %></td>
         <% if @books.user == current_user %>
@@ -81,7 +88,7 @@
   </div>
  </div>
 </div>
-ß
+
 <footer>
   <div class='container'>
   	<div class='row'>
