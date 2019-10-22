@@ -5,10 +5,10 @@
     </nav>
     <nav>
    <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to(" Home", user_path(current_user), {class: "glyphicon glyphicon-home"}) %></li>
-      <li><%= link_to(" User", users_path, {class: "glyphicon glyphicon-user"}) %></li>
-      <li><%= link_to(" Books", books_path, {class: "glyphicon glyphicon-book"}) %></li>
-      <li><%= link_to(" Logout", destroy_user_session_path, { method: :delete, class: "glyphicon glyphicon-log-out"}) %></li>
+      <li><%= link_to" Home", user_path(current_user), {class: "glyphicon glyphicon-home"} %></li>
+      <li><%= link_to" User", users_path, {class: "glyphicon glyphicon-user"} %></li>
+      <li><%= link_to" Books", books_path, {class: "glyphicon glyphicon-book"} %></li>
+      <li><%= link_to" Logout", destroy_user_session_path, { method: :delete, class: "glyphicon glyphicon-log-out"} %></li>
     </ul>
     </nav>
   </div>
@@ -41,10 +41,10 @@
     </thead>
     </table>
       <div class="row">
-      <% if @book.user == current_user %>
-      <%= link_to("", edit_user_path(@user), {class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench"}) %>
+      <% if @user == current_user %>
+      <%= link_to("", edit_user_path(current_user), {class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{@user.id}"}) %>
       <% else %>
-      <%= link_to("", user_path(current_user), {class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench"}) %>
+      <%= link_to("", user_path(current_user), {class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench user_#{current_user.id}" }) %>
       <% end %>
       </div>
     </div>
@@ -75,7 +75,8 @@
     </thead>
      <tbody>
        <tr>
-        <td><%= attachment_image_tag @books.user, :profile_image, :fill, 50, 50, format: 'jpeg',  fallback: "no_image.jpg", size:"50x50" %><br><%= @books.user.name %></td>
+        <td><%= attachment_image_tag @books.user, :profile_image, :fill, 50, 50, format: 'jpeg',  fallback: "no_image.jpg", size:"50x50" %><br>
+        <%= link_to @books.user.name,user_path(@books.user.id) %></td>
         <td><%= link_to @books.title, book_path(@books.id) %></td>
         <td><%= @books.body %></td>
         <% if @books.user == current_user %>

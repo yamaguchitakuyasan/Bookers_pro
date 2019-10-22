@@ -1,5 +1,11 @@
 class BooksController < ApplicationController
 
+    before_action :login_required
+
+    def login_required
+    redirect_to new_user_session_path unless current_user
+    end
+
     def index
         @books = Book.all
         @book = Book.new
@@ -8,11 +14,15 @@ class BooksController < ApplicationController
     def show
         @book = Book.new
     	@books = Book.find(params[:id])
-        @user = @book.user
+        @user = @books.user
     end
 
     def edit
         @book = Book.find(params[:id])
+        @user = @book.user
+    if  @user != current_user
+        redirect_to books_path
+    end
     end
 
 	def create
@@ -29,10 +39,10 @@ class BooksController < ApplicationController
     end
 
     def update
-        book = Book.find(params[:id])
-    if  book.update(book_params)
+        @book = Book.find(params[:id])
+    if  @book.update(book_params)
         flash[:update] = 'You have updated book successfully.'
-        redirect_to book_path(book.id)
+        redirect_to book_path(@book.id)
     else
         render :edit
     end
